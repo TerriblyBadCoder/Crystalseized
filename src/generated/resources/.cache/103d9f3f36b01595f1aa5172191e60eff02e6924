@@ -1,0 +1,4 @@
+// 1.20.1	2024-05-11T14:19:57.6116425	Registries
+ee497c75e28b0089895c4e97ed851d389df1980e data/crystalseized/forge/biome_modifier/add_end_prism.json
+51fb5c655587d59a57a288a67907616ae5dc85a1 data/crystalseized/worldgen/configured_feature/end_prism.json
+eb1eb10d368be8dc61b3e7a056acd5868e7e98e0 data/crystalseized/worldgen/placed_feature/end_prism_placed.json

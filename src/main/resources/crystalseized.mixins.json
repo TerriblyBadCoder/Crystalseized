@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.atired.crystalseized.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "Crystalseized.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+    "HumanoidArmorLayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

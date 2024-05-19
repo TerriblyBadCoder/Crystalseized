@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:has_structure/end_city",
+  "features": "crystalseized:end_prism_placed",
+  "step": "underground_decoration"
+}
