@@ -9,6 +9,8 @@ import net.atired.crystalseized.particles.CSparticleRegistry;
 import net.atired.crystalseized.particles.custom.BounceParticles;
 import net.atired.crystalseized.particles.custom.BounceParticlesBase;
 import net.atired.crystalseized.particletypes.DirectedParticleOptions;
+import net.minecraft.advancements.critereon.LightningStrikeTrigger;
+import net.minecraft.client.renderer.blockentity.BeaconRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -16,6 +18,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
@@ -23,11 +26,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.LightningRodBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.MovementInputUpdateEvent;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.joml.Vector3f;
@@ -61,7 +67,7 @@ public class PlayerEvents {
                     CompoundTag compound2 = new CompoundTag();
                     compound.putInt("crystalseized:prismpants_cd",8);
                     stack.addTagElement("crystalseized:prismpants_cd",compound.get("crystalseized:prismpants_cd"));
-                    System.out.println(stack.getTag());
+
                     ModMessages.sendToServer(new PantsC2Spacket());
                     event.getEntity().setDeltaMovement(event.getEntity().getViewVector(0).scale(event.getEntity().getDeltaMovement().length()+0.2));
                 }
@@ -72,12 +78,13 @@ public class PlayerEvents {
                 ItemStack stack = event.getEntity().getItemBySlot(EquipmentSlot.LEGS);
                 compound.putBoolean("crystalseized:prismpants_held",true);
                 stack.addTagElement("crystalseized:prismpants_held",compound.get("crystalseized:prismpants_held"));
-                System.out.println(stack.getTag());
+
 
             }
         }
 
     }
+
     @SubscribeEvent
     public void entityTick(LivingEvent.LivingTickEvent event)
     {
@@ -86,6 +93,7 @@ public class PlayerEvents {
         LivingEntity livingEntity = event.getEntity();
         if(livingEntity instanceof Player player && ForgeEventFactory.getMobGriefingEvent(livingEntity.level(), livingEntity) && livingEntity.getDeltaMovement().length() > 0.5)
         {
+
             Vec3 movement = livingEntity.getDeltaMovement();
             AABB aabb = player.getBoundingBox().inflate(0.25
             ).move(movement);
@@ -99,7 +107,6 @@ public class PlayerEvents {
                     if (!var8.hasNext()) {
                         break label;
                     }
-
                     blockpos = (BlockPos)var8.next();
                     BlockState blockstate = livingEntity.level().getBlockState(blockpos);
                     block = blockstate.getBlock();

@@ -55,9 +55,7 @@ public class PantsC2Spacket {
                     int i = 0;
                     level.sendParticles(CSparticleRegistry.SHATTER_PARTICLES.get(),player.getX(),player.getY(),player.getZ(),8,0.2,0.2,0.2,0.9);
                     level.playSound(null,new BlockPos((int) player.getX(), (int) player.getY(), (int) player.getZ()), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS,5,1);
-                    System.out.println("EH ig");
                     for(int j = 0; j < level.players().size(); ++j) {
-                        System.out.println("EH " +j);
                         ServerPlayer serverplayer = (ServerPlayer)level.players().get(j);
                         ModMessages.sendToPlayer(new DirectedParticlesS2Cpacket(ParticleTypes.FLASH, false, player.getX(),player.getY(),player.getZ(), serverplayer.getViewVector(1).toVector3f(), 2.5f),serverplayer);
                         ModMessages.sendToPlayer(new DirectedParticlesS2Cpacket(ParticleTypes.FLASH, false, player.getX(),player.getY(),player.getZ(), serverplayer.getViewVector(1).toVector3f(), 1.5f),serverplayer);

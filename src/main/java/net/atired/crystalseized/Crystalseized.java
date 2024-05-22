@@ -2,15 +2,18 @@ package net.atired.crystalseized;
 
 import com.mojang.logging.LogUtils;
 import net.atired.crystalseized.blocks.CSblockRegistry;
+import net.atired.crystalseized.entities.CSentityRegistry;
 import net.atired.crystalseized.events.ColorEvents;
 import net.atired.crystalseized.events.PlayerEvents;
 import net.atired.crystalseized.items.CSitemRegistry;
 import net.atired.crystalseized.networking.ModMessages;
 import net.atired.crystalseized.particles.CSparticleRegistry;
+import net.atired.crystalseized.renderer.entity.StarFallRenderer;
 import net.atired.crystalseized.worldgen.custom.CSbaseFeatures;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ElytraItem;
@@ -44,6 +47,7 @@ public class Crystalseized {
 
         CSitemRegistry.register(modEventBus);
         CSblockRegistry.register(modEventBus);
+        CSentityRegistry.DEF_REG.register(modEventBus);
         CSbaseFeatures.register(modEventBus);
         CSparticleRegistry.register(modEventBus);
         modEventBus.addListener(ColorEvents::registerBlockColors);
@@ -51,6 +55,7 @@ public class Crystalseized {
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new ClientModEvents());
         MinecraftForge.EVENT_BUS.register(new PlayerEvents());
         modEventBus.addListener(this::addCreative);
 
@@ -88,7 +93,11 @@ public class Crystalseized {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            ItemBlockRenderTypes.setRenderLayer(CSblockRegistry.END_CRYSTAL.get(), RenderType.translucent());
+            System.out.println("yeah");
+            EntityRenderers.register(CSentityRegistry.STARFALL.get(), (context) -> {
+                        return new StarFallRenderer(context,1);
+                    }
+            );
         }
 
     }

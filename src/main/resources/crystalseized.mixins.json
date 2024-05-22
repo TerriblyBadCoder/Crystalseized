@@ -3,9 +3,9 @@
   "minVersion": "0.8",
   "package": "net.atired.crystalseized.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "Crystalseized.refmap.json",
+  "refmap": "crystalseized.refmap.json",
   "mixins": [
-
+    "BadIdeaMixin"
   ],
   "client": [
     "HumanoidArmorLayerMixin"

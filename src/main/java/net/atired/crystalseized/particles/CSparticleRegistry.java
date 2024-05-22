@@ -12,6 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class CSparticleRegistry {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Crystalseized.MODID);
     public static final RegistryObject<SimpleParticleType> SHATTER_PARTICLES = PARTICLE_TYPES.register("shatter_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> METEOR_PARTICLES = PARTICLE_TYPES.register("meteor_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<DirectedParticleType> BOUNCE_PARTICLES = PARTICLE_TYPES.register("bounce_particles", () -> new DirectedParticleType(true));
 
     public static void register(IEventBus eventBus){
