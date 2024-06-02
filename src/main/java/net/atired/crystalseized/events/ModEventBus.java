@@ -2,9 +2,7 @@ package net.atired.crystalseized.events;
 
 import net.atired.crystalseized.Crystalseized;
 import net.atired.crystalseized.particles.CSparticleRegistry;
-import net.atired.crystalseized.particles.custom.MeteorParticles;
-import net.atired.crystalseized.particles.custom.ShatterParticles;
-import net.atired.crystalseized.particles.custom.BounceParticles;
+import net.atired.crystalseized.particles.custom.*;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,6 +14,7 @@ public class ModEventBus {
         event.registerSpriteSet(CSparticleRegistry.SHATTER_PARTICLES.get(), ShatterParticles.Provider::new);
         event.registerSpriteSet(CSparticleRegistry.METEOR_PARTICLES.get(), MeteorParticles.Provider::new);
         event.registerSpriteSet(CSparticleRegistry.BOUNCE_PARTICLES.get(), BounceParticles.Provider::new);
-
+        event.registerSpriteSet(CSparticleRegistry.SPHERE_PARTICLES.get(), SphereBlockParticles.Provider::new);
+        event.registerSpriteSet(CSparticleRegistry.SCORCH_PARTICLES.get(), ScorchParticles.Provider::new);
     }
 }

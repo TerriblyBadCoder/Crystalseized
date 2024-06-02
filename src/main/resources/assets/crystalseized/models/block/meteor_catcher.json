@@ -1,0 +1,9 @@
+{
+  "parent": "crystalseized:block/crystalblock",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "all": "crystalseized:block/end_crystal",
+    "aller": "crystalseized:block/meteor_catcher_overlay",
+    "allerdown": "crystalseized:block/meteor_catcher_bottom"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "crystalseized:lunar_shard"
+    },
+    "B": {
+      "item": "crystalseized:lunar_block"
+    },
+    "C": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "pattern": [
+    "C",
+    "B",
+    "A"
+  ],
+  "result": {
+    "item": "crystalseized:strike_pointer"
+  },
+  "show_notification": true
+}

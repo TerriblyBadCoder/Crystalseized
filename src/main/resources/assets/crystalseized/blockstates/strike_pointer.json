@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "crystalseized:block/strike_pointer",
+      "x": 180
+    },
+
+    "facing=east": {
+      "model": "crystalseized:block/strike_pointer",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "crystalseized:block/strike_pointer",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "crystalseized:block/strike_pointer",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "crystalseized:block/strike_pointer"
+    },
+    "facing=west": {
+      "model": "crystalseized:block/strike_pointer",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

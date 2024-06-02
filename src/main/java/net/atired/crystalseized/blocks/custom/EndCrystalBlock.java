@@ -26,7 +26,8 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.*;
 import java.util.List;
 
-public class EndCrystalBlock extends AbstractGlassBlock implements BeaconBeamBlock{
+public class EndCrystalBlock extends AbstractGlassBlock
+        implements BeaconBeamBlock{
 
     public EndCrystalBlock(Properties p_48729_) {
         super(p_48729_);
@@ -36,7 +37,6 @@ public class EndCrystalBlock extends AbstractGlassBlock implements BeaconBeamBlo
     public @Nullable float[] getBeaconColorMultiplier(BlockState state, LevelReader level, BlockPos pos, BlockPos beaconPos) {
         Color color = getEndCrystalColor(pos);
         float[] array;
-
         array = new float[]{color.getRed()/255f,color.getGreen()/255f,color.getBlue()/255f};
         return array;
     }

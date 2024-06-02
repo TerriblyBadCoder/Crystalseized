@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "crystalseized:lunar_shard"
+    },
+    "B": {
+      "item": "crystalseized:lunar_block"
+    },
+    "C": {
+      "item": "crystalseized:end_crystal"
+    }
+  },
+  "pattern": [
+    " C ",
+    "ACA",
+    "ABA"
+  ],
+  "result": {
+    "item": "crystalseized:meteor_catcher"
+  },
+  "show_notification": true
+}

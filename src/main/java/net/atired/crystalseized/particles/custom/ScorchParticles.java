@@ -3,10 +3,11 @@ package net.atired.crystalseized.particles.custom;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
-import net.minecraft.core.particles.DustParticleOptionsBase;
+import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,54 +15,51 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
-@OnlyIn(Dist.CLIENT)
-public class BounceParticlesBase<T extends DustParticleOptionsBase> extends TextureSheetParticle {
+public class ScorchParticles extends TextureSheetParticle {
     private final SpriteSet sprites;
     private static final Vector3f ROTATION_VECTOR = (new Vector3f(0.5F, 0.5F, 0.5F)).normalize();
     private static final Vector3f TRANSFORM_VECTOR = new Vector3f(-1.0F, -1.0F, 0.0F);
-    private final Vec3 direction;
-
-    protected BounceParticlesBase(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, T pOptions, SpriteSet pSprites) {
+    protected ScorchParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
-        this.friction = 0.96F;
-        this.speedUpWhenYMotionIsBlocked = true;
-        this.sprites = pSprites;
+        this.gravity = 0f;
+        this.friction = 0.8f;
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
-        this.direction = new Vec3(pOptions.getColor().x,pOptions.getColor().y,pOptions.getColor().z).normalize();
-        Color color = getShatterColor(this.getPos());
-        this.rCol = color.getRed()/256F;
-        this.gCol = color.getGreen()/256F;
-        this.bCol = color.getBlue()/256F;
-        this.quadSize = 0.6F * pOptions.getScale();
-        this.alpha = 0.8F;
-        this.lifetime = 15;
-        this.setSpriteFromAge(pSprites);
+        this.sprites = spriteSet;
+        this.quadSize = 2F;
+        this.lifetime = 50;
+        this.rCol = 1f;
+        this.bCol =1f;
+        this.gCol = 1f;
+        this.roll = (float) Math.random() * ((float) Math.PI * 2F);
+        this.oRoll = this.roll;
+        this.setSpriteFromAge(spriteSet);
+        this.alpha = 0.95F;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.setSpriteFromAge(this.sprites);
     }
     public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
-            float pitch = (float)Math.asin(-this.direction.y);
-            float yaw = (float)Math.atan2(this.direction.x,this.direction.z);
 
-            this.alpha = Mth.clamp(0.8F - Mth.clamp(((float)this.age + pPartialTicks) / (float)this.lifetime, 0.0F, 0.8F),0.0F,0.8F);
+        this.alpha = Mth.clamp(0.8F - Mth.clamp(((float)this.age + pPartialTicks) / (float)this.lifetime, 0.0F, 0.8F),0.0F,0.8F);
         this.renderRotatedParticle(pBuffer, pRenderInfo, pPartialTicks, (p_253347_) -> {
-            p_253347_.mul((new Quaternionf()).rotationYXZ(yaw,pitch,0));
+            p_253347_.mul((new Quaternionf()).rotationYXZ(0,1.57f,this.roll));
         });
         this.renderRotatedParticle(pBuffer, pRenderInfo, pPartialTicks, (quaternionf) -> {
-            quaternionf.mul((new Quaternionf()).rotationYXZ(yaw+3.14F,-pitch,0));
+            quaternionf.mul((new Quaternionf()).rotationYXZ(3.14F,-1.57f,this.roll));
         });
+
     }
 
-    public static Color getShatterColor(Vec3 pos)
-    {
 
-        float colourhue = (((float)pos.x +(float)pos.y+ Mth.sin(((float)pos.z + (float)pos.x) / 35) * 35) % 200) / 200;
-        Color colour = Color.getHSBColor(colourhue, 0.4F, 1F);
-        return colour;
-    }
     private void renderRotatedParticle(VertexConsumer pConsumer, Camera pCamera, float p_233991_, Consumer<Quaternionf> pQuaternion) {
         Vec3 $$4 = pCamera.getPosition();
         float $$5 = (float)(Mth.lerp((double)p_233991_, this.xo, this.x) - $$4.x());
@@ -81,7 +79,7 @@ public class BounceParticlesBase<T extends DustParticleOptionsBase> extends Text
             $$12.add($$5, $$6, $$7);
         }
 
-        $$13 = this.getLightColor(p_233991_);
+        $$13 = 15;
         this.makeCornerVertex(pConsumer, $$9[0], this.getU1(), this.getV1(), $$13);
         this.makeCornerVertex(pConsumer, $$9[1], this.getU1(), this.getV0(), $$13);
         this.makeCornerVertex(pConsumer, $$9[2], this.getU0(), this.getV0(), $$13);
@@ -91,22 +89,21 @@ public class BounceParticlesBase<T extends DustParticleOptionsBase> extends Text
         pConsumer.vertex((double)pVertex.x(), (double)pVertex.y(), (double)pVertex.z()).uv(pU, pV).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(pPackedLight).endVertex();
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+        public Provider(SpriteSet spriteSet) {
+            this.sprites = spriteSet;
+        }
+        public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
+                                       double x, double y, double z,
+                                       double dx, double dy, double dz) {
+            return new ScorchParticles(level, x, y, z, this.sprites, dx, dy, dz);
 
+        }
+    }
+    @Override
     public ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
-    }
-
-    public float getQuadSize(float pScaleFactor) {
-        return this.quadSize;
-    }
-
-    public void tick() {
-        super.tick();
-        Color color = getShatterColor(this.getPos());
-        this.rCol = color.getRed()/256F;
-        this.gCol = color.getGreen()/256F;
-        this.bCol = color.getBlue()/256F;
-
-        this.setSpriteFromAge(this.sprites);
     }
 }

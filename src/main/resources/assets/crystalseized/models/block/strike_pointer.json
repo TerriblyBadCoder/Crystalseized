@@ -1,0 +1,50 @@
+{
+  "parent": "block/block",
+  "render_type": "minecraft:cutout",
+  "display": {
+    "gui": {
+      "scale": [1.2, 1.2, 1.2]
+    },
+    "thirdperson_righthand": {
+      "translation": [ 0, 2, 0.5],
+      "scale": [ 0.40, 0.40, 0.40 ]
+    }
+  },
+  "ambientocclusion": false,
+  "textures": {
+    "texture": "crystalseized:block/strike_pointer",
+    "particle": "crystalseized:block/strike_pointer"
+  },
+  "elements": [
+    {   "from": [ 7, 0, 7 ],
+      "to": [ 9, 12, 9 ],
+      "faces": {
+        "north": { "uv": [ 0, 0, 2, 12 ],"texture": "#texture" },
+        "south": { "uv": [ 0, 0, 2, 12 ],"texture": "#texture" },
+        "west":  { "uv": [ 0, 0, 2, 12 ],"texture": "#texture" },
+        "east":  { "uv": [ 0, 0, 2, 12 ],"texture": "#texture" },
+        "down": { "uv": [ 2, 2, 4, 4 ], "texture": "#texture" },
+        "up": { "uv": [ 2, 0, 4, 2 ], "texture": "#texture" }
+      }
+    },
+    {   "from": [ 3.8, 9
+    , 8 ],
+      "to": [ 12.2, 15, 8 ],
+      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
+      "shade": false,
+      "faces": {
+        "north": { "uv": [ 5, 1, 16, 7 ], "texture": "#texture" },
+        "south": { "uv": [ 5, 1, 16, 7 ], "texture": "#texture" }
+      }
+    },
+    {   "from": [ 8, 9, 3.8 ],
+      "to": [ 8, 15, 12.2 ],
+      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
+      "shade": false,
+      "faces": {
+        "west": { "uv": [ 5, 1, 16, 7 ], "texture": "#texture" },
+        "east": { "uv": [ 5, 1, 16, 7 ], "texture": "#texture" }
+      }
+    }
+  ]
+}

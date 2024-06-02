@@ -1,5 +1,6 @@
 package net.atired.crystalseized.events;
 
+import net.atired.crystalseized.blocks.CSblockRegistry;
 import net.atired.crystalseized.blocks.custom.EndCrystalBlock;
 import net.atired.crystalseized.items.CSitemRegistry;
 import net.atired.crystalseized.items.custom.PrismaticPantsItem;
@@ -110,7 +111,7 @@ public class PlayerEvents {
                     blockpos = (BlockPos)var8.next();
                     BlockState blockstate = livingEntity.level().getBlockState(blockpos);
                     block = blockstate.getBlock();
-                } while(!(block instanceof EndCrystalBlock));
+                } while(!(block == CSblockRegistry.END_CRYSTAL.get()));
                 livingEntity.hurt(livingEntity.level().damageSources().flyIntoWall(),4F*(float)livingEntity.getDeltaMovement().length());
                 if(livingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == Items.CHAINMAIL_LEGGINGS )
                 {

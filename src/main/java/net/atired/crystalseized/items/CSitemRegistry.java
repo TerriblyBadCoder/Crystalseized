@@ -15,6 +15,8 @@ public class CSitemRegistry {
 
     public static final RegistryObject<Item> PRISMATIC_LEGGINGS = ITEMS.register("prismatic_leggings",
             () -> new PrismaticPantsItem(CSarmorMat.PRISMATIC, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> LUNAR_SHARD = ITEMS.register("lunar_shard",
+            () -> new Item(new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }

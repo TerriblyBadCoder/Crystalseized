@@ -1,4 +1,8 @@
 {
   "item.crystalseized.prismatic_leggings": "Prismatic Leggings",
-  "block.crystalseized.end_crystal": "Prism Block"
+  "item.crystalseized.lunar_shard": "Lunar Shard",
+  "block.crystalseized.end_crystal": "Prism Block",
+  "block.crystalseized.meteor_catcher": "Meteor Shield",
+  "block.crystalseized.lunar_block": "Lunar Stone",
+  "block.crystalseized.strike_pointer": "Starer"
 }

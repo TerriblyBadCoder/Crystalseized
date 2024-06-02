@@ -1,0 +1,44 @@
+{   "parent": "block/block",
+  "textures": {
+    "particle": "#all"
+  },
+  "elements": [
+    {   "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#all", "tintindex": 0, "cullface": "up" },
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#all", "tintindex": 0, "cullface": "north" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#all", "tintindex": 0, "cullface": "south" },
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#all", "tintindex": 0, "cullface": "west" },
+        "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#all", "tintindex": 0, "cullface": "east" }
+      }
+    },
+    {   "from": [ 2, 2, 2 ],
+      "to": [ 14, 14, 14 ],
+      "faces": {
+        "up":    { "uv": [ 2, 2, 14, 14 ], "texture": "#all", "tintindex": 0, "cullface": "up" },
+        "down":    { "uv": [ 2, 2, 14, 14 ], "texture": "#all", "tintindex": 0, "cullface": "down" },
+        "north": { "uv": [ 2, 2, 14, 14 ], "texture": "#all", "tintindex": 0, "cullface": "north" },
+        "south": { "uv": [ 2, 2, 14, 14 ], "texture": "#all", "tintindex": 0, "cullface": "south" },
+        "west":  { "uv": [ 2, 2, 14, 14 ], "texture": "#all", "tintindex": 0, "cullface": "west" },
+        "east":  { "uv": [ 2, 2, 14, 14 ], "texture": "#all", "tintindex": 0, "cullface": "east" }
+      }
+    },
+    {   "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#allerdown",  "cullface": "down" },
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#aller", "cullface": "north" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#aller", "cullface": "south" },
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#aller", "cullface": "west" },
+        "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#aller", "cullface": "east" }
+      }
+    },
+    {   "from": [ 0, 0, 0 ],
+      "to": [ 16, 0, 16 ],
+      "faces": {
+        "up":  { "uv": [ 0, 0, 16, 16 ], "texture": "#allerdown",  "cullface": "up" }
+      }
+    }
+  ]
+}

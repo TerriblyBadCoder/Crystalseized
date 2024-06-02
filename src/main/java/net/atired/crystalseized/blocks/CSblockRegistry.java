@@ -2,16 +2,15 @@ package net.atired.crystalseized.blocks;
 
 import net.atired.crystalseized.Crystalseized;
 import net.atired.crystalseized.blocks.custom.EndCrystalBlock;
+import net.atired.crystalseized.blocks.custom.MeteorCatcherBlock;
+import net.atired.crystalseized.blocks.custom.StrikePointerBlock;
 import net.atired.crystalseized.items.CSitemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlimeBlock;
-import net.minecraft.world.level.block.StainedGlassBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,6 +34,12 @@ public class CSblockRegistry {
 
     public static final RegistryObject<Block> END_CRYSTAL = registerBlock("end_crystal",
             () -> new EndCrystalBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> METEOR_CATCHER = registerBlock("meteor_catcher",
+            () -> new MeteorCatcherBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LUNAR_BLOCK = registerBlock("lunar_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACKSTONE).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> STRIKE_POINTER = registerBlock("strike_pointer",
+            () -> new StrikePointerBlock(BlockBehaviour.Properties.copy(Blocks.BLACKSTONE).requiresCorrectToolForDrops()));
 
     private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block)
     {

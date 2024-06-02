@@ -8,6 +8,7 @@ import net.atired.crystalseized.items.DyeablePrismItem;
 import net.atired.crystalseized.particles.CSparticleRegistry;
 import net.atired.crystalseized.particles.custom.ShatterParticles;
 import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -33,13 +34,14 @@ public class ColorEvents {
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event){
         event.getBlockColors().register((state, world, pos, tintIndex) ->
                         world != null && pos != null ? getEndCrystalColor(world, pos) : 0xFFFFFF,
-               CSblockRegistry.END_CRYSTAL.get());
+               CSblockRegistry.END_CRYSTAL.get(),CSblockRegistry.METEOR_CATCHER.get());
+
     }
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event){
 
         event.getItemColors().register((stack, tintIndex) -> 0xFF22FF,
-                CSblockRegistry.END_CRYSTAL.get());
+                CSblockRegistry.END_CRYSTAL.get(),CSblockRegistry.METEOR_CATCHER.get());
     }
 
 

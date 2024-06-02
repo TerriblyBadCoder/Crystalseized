@@ -92,7 +92,17 @@ public class DirectedParticlesS2Cpacket  {
                 playerSided = Minecraft.getInstance().player;
             }
             if(playerSided!=null)
-                playerSided.level().addParticle(new DirectedParticleOptions(getDirection(),getScale()),getX(),getY(),getZ(),view.x*-0.5*(1/getScale()),view.y*-0.5*(1/getScale()),view.z*-0.5*(1/getScale()));
+            {
+                if(!this.isOverrideLimiter())
+                {
+                    playerSided.level().addParticle(new DirectedParticleOptions(getDirection(),getScale()),getX(),getY(),getZ(),view.x*-0.5*(1/getScale()),view.y*-0.5*(1/getScale()),view.z*-0.5*(1/getScale()));
+                }
+                else
+                {
+                    playerSided.level().addParticle(new DirectedParticleOptions(getDirection(),getScale()),getX(),getY(),getZ(),0,0,0);
+                }
+            }
+
         });
         return true;
     }
