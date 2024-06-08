@@ -2,6 +2,7 @@ package net.atired.crystalseized.blocks;
 
 import net.atired.crystalseized.Crystalseized;
 import net.atired.crystalseized.blocks.custom.EndCrystalBlock;
+import net.atired.crystalseized.blocks.custom.LunarSandBlock;
 import net.atired.crystalseized.blocks.custom.MeteorCatcherBlock;
 import net.atired.crystalseized.blocks.custom.StrikePointerBlock;
 import net.atired.crystalseized.items.CSitemRegistry;
@@ -34,6 +35,8 @@ public class CSblockRegistry {
 
     public static final RegistryObject<Block> END_CRYSTAL = registerBlock("end_crystal",
             () -> new EndCrystalBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LUNAR_SAND = registerBlock("lunar_sand",
+            () -> new LunarSandBlock(BlockBehaviour.Properties.copy(Blocks.SAND)));
     public static final RegistryObject<Block> METEOR_CATCHER = registerBlock("meteor_catcher",
             () -> new MeteorCatcherBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LUNAR_BLOCK = registerBlock("lunar_block",

@@ -4,6 +4,7 @@ import net.atired.crystalseized.Crystalseized;
 import net.atired.crystalseized.networking.packets.DirectedParticlesS2Cpacket;
 import net.atired.crystalseized.networking.packets.PantsC2Spacket;
 import net.atired.crystalseized.networking.packets.ParticlesS2Cpacket;
+import net.atired.crystalseized.networking.packets.RangeStarerS2Cpacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -20,6 +21,7 @@ public class ModMessages {
     public static void register(){
         SimpleChannel net = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(Crystalseized.MODID,"messages")).networkProtocolVersion(() -> "1.0").clientAcceptedVersions(s -> true).serverAcceptedVersions(s -> true).simpleChannel();
         INSTANCE = net;
+        net.messageBuilder(RangeStarerS2Cpacket.class,id(), NetworkDirection.PLAY_TO_CLIENT).decoder(RangeStarerS2Cpacket::new).encoder(RangeStarerS2Cpacket::write).consumerMainThread(RangeStarerS2Cpacket::handle).add();
         net.messageBuilder(DirectedParticlesS2Cpacket.class,id(), NetworkDirection.PLAY_TO_CLIENT).decoder(DirectedParticlesS2Cpacket::new).encoder(DirectedParticlesS2Cpacket::write).consumerMainThread(DirectedParticlesS2Cpacket::handle).add();
         net.messageBuilder(ParticlesS2Cpacket.class,id(), NetworkDirection.PLAY_TO_CLIENT).decoder(ParticlesS2Cpacket::new).encoder(ParticlesS2Cpacket::write).consumerMainThread(ParticlesS2Cpacket::handle).add();
         net.messageBuilder(PantsC2Spacket.class,id(), NetworkDirection.PLAY_TO_SERVER).decoder(PantsC2Spacket::new).encoder(PantsC2Spacket::toBytes).consumerMainThread(PantsC2Spacket::handle).add();

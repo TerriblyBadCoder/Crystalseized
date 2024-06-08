@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.MovementInputUpdateEvent;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -43,6 +44,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class PlayerEvents {
+
     @SubscribeEvent
     public void sneak (MovementInputUpdateEvent event)
     {
@@ -52,7 +54,6 @@ public class PlayerEvents {
             if(event.getInput().jumping)
             {
                 Player player = event.getEntity();
-
                 ItemStack stack = event.getEntity().getItemBySlot(EquipmentSlot.LEGS);
                 boolean loadedjump = ((CompoundTag)stack.serializeNBT().get("tag")).getBoolean("crystalseized:prismpants_held");
                 boolean wasonground = ((CompoundTag)stack.serializeNBT().get("tag")).getBoolean("crystalseized:prismpants_onground");

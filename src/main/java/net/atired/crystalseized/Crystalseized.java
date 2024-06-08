@@ -80,6 +80,20 @@ public class Crystalseized {
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS)
         {
             event.accept(CSblockRegistry.END_CRYSTAL.get());
+            event.accept(CSblockRegistry.LUNAR_BLOCK.get());
+            event.accept(CSblockRegistry.LUNAR_SAND.get());
+        }
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS)
+        {
+            event.accept(CSitemRegistry.LUNAR_SHARD.get());
+        }
+        if(event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS)
+        {
+            event.accept(CSblockRegistry.STRIKE_POINTER);
+        }
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS)
+        {
+            event.accept(CSblockRegistry.METEOR_CATCHER);
         }
         if (event.getTabKey() == CreativeModeTabs.COMBAT)
         {
@@ -101,7 +115,6 @@ public class Crystalseized {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            System.out.println("yeah");
             EntityRenderers.register(CSentityRegistry.STARFALL.get(), (context) -> {
                         return new StarFallRenderer(context,1);
                     }

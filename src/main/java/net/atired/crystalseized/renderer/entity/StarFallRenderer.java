@@ -79,7 +79,14 @@ public class StarFallRenderer extends EntityRenderer<StarFallEntity> {
         int sampleSize = 10;
         float trailHeight = 0.8F;
         float trailZRot = entityIn.tickCount;
-
+        float sideoffset = (float) Math.sin(entityIn.tickCount)/10f;
+        float oldoffset = 0;
+        if(entityIn.getRandumb()<0.03)
+        {
+            trailHeight+=0.2f*(entityIn.getRandumb()+0.05f)*70;
+            trailR = 0.7f;
+            trailB = 0.8f;
+        }
         Vec3 drawFrom = entityIn.getTrailPosition(0, partialTicks);
         VertexConsumer vertexconsumer = bufferIn.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE));
 
@@ -102,14 +109,28 @@ public class StarFallRenderer extends EntityRenderer<StarFallEntity> {
             Matrix4f matrix4f = posestack$pose.pose();
             Matrix3f matrix3f = posestack$pose.normal();
 
-            vertexconsumer.vertex(matrix4f, (float) draw1.x + (float) bottomAngleVec.x, (float) draw1.y + (float) bottomAngleVec.y, (float) draw1.z + (float) bottomAngleVec.z).color(trailR, trailG, trailB, Mth.clamp(trailA*dist,0f,1f)).uv(u1, 1F).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
-            vertexconsumer.vertex(matrix4f, (float) draw2.x + (float) bottomAngleVec.x, (float) draw2.y + (float) bottomAngleVec.y, (float) draw2.z + (float) bottomAngleVec.z).color(trailR, trailG, trailB,  Mth.clamp(trailA*dist,0f,1f)).uv(u2, 1F).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
-            vertexconsumer.vertex(matrix4f, (float) draw2.x + (float) topAngleVec.x, (float) draw2.y + (float) topAngleVec.y, (float) draw2.z + (float) topAngleVec.z).color(trailR, trailG, trailB,  Mth.clamp(trailA*dist,0f,1f)).uv(u2, 0).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
-            vertexconsumer.vertex(matrix4f, (float) draw1.x + (float) topAngleVec.x, (float) draw1.y + (float) topAngleVec.y, (float) draw1.z + (float) topAngleVec.z).color(trailR, trailG, trailB,  Mth.clamp(trailA*dist,0f,1f)).uv(u1, 0).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+            vertexconsumer.vertex(matrix4f, (float) draw1.x + (float) bottomAngleVec.x+ (float) topAngleVec.scale(oldoffset).x, (float) draw1.y + (float) bottomAngleVec.y+ (float) topAngleVec.scale(oldoffset).y, (float) draw1.z + (float) bottomAngleVec.z+ (float) topAngleVec.scale(oldoffset).z).color(trailR, trailG, trailB, Mth.clamp(trailA*dist,0f,1f)).uv(u1, 1F).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+            vertexconsumer.vertex(matrix4f, (float) draw2.x + (float) bottomAngleVec.x+ (float) topAngleVec.scale(sideoffset).x, (float) draw2.y + (float) bottomAngleVec.y+ (float) topAngleVec.scale(sideoffset).y, (float) draw2.z + (float) bottomAngleVec.z+ (float) topAngleVec.scale(sideoffset).z).color(trailR, trailG, trailB,  Mth.clamp(trailA*dist,0f,1f)).uv(u2, 1F).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+            vertexconsumer.vertex(matrix4f, (float) draw2.x + (float) topAngleVec.x+ (float) topAngleVec.scale(sideoffset).x, (float) draw2.y + (float) topAngleVec.y+ (float) topAngleVec.scale(sideoffset).y, (float) draw2.z + (float) topAngleVec.z+ (float) topAngleVec.scale(sideoffset).z).color(trailR, trailG, trailB,  Mth.clamp(trailA*dist,0f,1f)).uv(u2, 0).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+            vertexconsumer.vertex(matrix4f, (float) draw1.x + (float) topAngleVec.x + (float) topAngleVec.scale(oldoffset).x, (float) draw1.y + (float) topAngleVec.y+ (float) topAngleVec.scale(oldoffset).y, (float) draw1.z + (float) topAngleVec.z+ (float) topAngleVec.scale(oldoffset).z).color(trailR, trailG, trailB,  Mth.clamp(trailA*dist,0f,1f)).uv(u1, 0).overlayCoords(NO_OVERLAY).uv2(packedLightIn).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
             drawFrom = sample;
-            trailA+=0.07f;
-            trailB-=0.9f;
-            trailG-=0.07f;
+            if(entityIn.getRandumb()>=0.03)
+            {
+                sideoffset = 0;
+                trailA+=0.07f;
+                trailB-=0.9f;
+                trailG-=0.07f;
+            }
+            else
+            {
+                oldoffset = sideoffset;
+                sideoffset = (float) Math.sin(samples*30+entityIn.tickCount)/10f;
+                trailA+=0.07f;
+                trailB+=0.01f;
+                trailR-=0.04f;
+                trailG-=0.09f;
+            }
+
         }
     }
 

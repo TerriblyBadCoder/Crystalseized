@@ -3,10 +3,16 @@ package net.atired.crystalseized.blocks.custom;
 import net.atired.crystalseized.blocks.CSblockRegistry;
 import net.atired.crystalseized.entities.CSblockEntityRegistry;
 import net.atired.crystalseized.entities.custom.blockentity.StrikePointerBlockEntity;
+import net.atired.crystalseized.networking.ModMessages;
+import net.atired.crystalseized.networking.packets.RangeStarerS2Cpacket;
 import net.minecraft.client.renderer.blockentity.EnchantTableRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -21,6 +27,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class StrikePointerBlock extends RodBlock implements EntityBlock {
@@ -38,6 +45,25 @@ public class StrikePointerBlock extends RodBlock implements EntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_153746_) {
         p_153746_.add(new Property[]{FACING,POWERED});
 
+    }
+
+    @Override
+    public InteractionResult use(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, InteractionHand p_60507_, BlockHitResult p_60508_) {
+        BlockEntity $$3 = p_60504_.getBlockEntity(p_60505_);
+        if($$3 instanceof StrikePointerBlockEntity strikePointerBlockEntity && p_60507_ == InteractionHand.MAIN_HAND)
+        {
+            if(!p_60506_.isCrouching())
+            {
+                strikePointerBlockEntity.range+=1;
+            }
+            else
+            {
+                strikePointerBlockEntity.range+=7;
+            }
+            strikePointerBlockEntity.range%=8;
+            p_60506_.swing(p_60507_);
+        }
+        return super.use(p_60503_, p_60504_, p_60505_, p_60506_, p_60507_, p_60508_);
     }
 
     @javax.annotation.Nullable

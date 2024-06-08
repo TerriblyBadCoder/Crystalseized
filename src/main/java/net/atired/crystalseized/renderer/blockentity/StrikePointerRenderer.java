@@ -40,13 +40,13 @@ public class StrikePointerRenderer implements BlockEntityRenderer<StrikePointerB
     @Override
     public void render(StrikePointerBlockEntity strikePointerBlockEntity, float v, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int i1) {
         poseStack.pushPose();
+
         Vec3i vec3i = strikePointerBlockEntity.getBlockState().getValue(BlockStateProperties.FACING).getNormal();
         Vector3f vector3f = new Vector3f(vec3i.getX(),vec3i.getY(),vec3i.getZ());
         vector3f = vector3f.mul(0.5f).add(0.5f,0.5f,0.5f);
         poseStack.translate(vector3f.x,vector3f.y,vector3f.z);
         eyeModel.rotate(strikePointerBlockEntity.yrot, strikePointerBlockEntity.age/10f,strikePointerBlockEntity.prot);
-        eyeModel.renderToBuffer(poseStack, multiBufferSource.getBuffer(RenderType.entityTranslucentEmissive(EYE_LOCATION)),i,i1,1,1,1, strikePointerBlockEntity.trans);
-
+        eyeModel.renderToBuffer(poseStack, multiBufferSource.getBuffer(RenderType.entityTranslucent(EYE_LOCATION)),210+strikePointerBlockEntity.range*5,i1,strikePointerBlockEntity.range/7f,1,1, strikePointerBlockEntity.trans);
         Vec3 offset = new Vec3(1,0,0).scale(Math.pow(strikePointerBlockEntity.pos,0.5)).yRot(strikePointerBlockEntity.yrot).add( 0,(float) Math.sin(strikePointerBlockEntity.age/10f)/3.14f,0);
 
         Vec3 pos = strikePointerBlockEntity.actualpos;
@@ -57,7 +57,6 @@ public class StrikePointerRenderer implements BlockEntityRenderer<StrikePointerB
             VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE));
             makeVertexes(vertexconsumer, matrix4f, matrix3f, strikePointerBlockEntity, pos, offset);
         }
-
         poseStack.popPose();
     }
     public void makeVertexes(VertexConsumer vertexconsumer, Matrix4f matrix4f, Matrix3f matrix3f,StrikePointerBlockEntity strikePointerBlockEntity,Vec3 pos,Vec3 offs)

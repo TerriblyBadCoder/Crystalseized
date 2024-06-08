@@ -24,8 +24,8 @@ public class ModPlacedFeatures {
 
 
         register(context, END_PRISM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.END_PRISM),
-                ModOrePlacement.commonOrePlacement(12,
-                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-1),VerticalAnchor.absolute(90))));
+                ModOrePlacement.commonOrePlacement(4,
+                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-1),VerticalAnchor.absolute(28))));
     }
 
 

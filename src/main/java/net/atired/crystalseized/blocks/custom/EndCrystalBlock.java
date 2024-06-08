@@ -1,12 +1,14 @@
 package net.atired.crystalseized.blocks.custom;
 
 import net.atired.crystalseized.blocks.CSblockRegistry;
+import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -37,8 +39,10 @@ public class EndCrystalBlock extends AbstractGlassBlock
     public @Nullable float[] getBeaconColorMultiplier(BlockState state, LevelReader level, BlockPos pos, BlockPos beaconPos) {
         Color color = getEndCrystalColor(pos);
         float[] array;
+
         array = new float[]{color.getRed()/255f,color.getGreen()/255f,color.getBlue()/255f};
         return array;
+
     }
     public static Color getEndCrystalColor( BlockPos pos)
     {

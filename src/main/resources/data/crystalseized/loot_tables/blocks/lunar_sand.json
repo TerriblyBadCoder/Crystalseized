@@ -12,11 +12,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "crystalseized:strike_pointer"
+          "name": "crystalseized:lunar_sand"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "crystalseized:blocks/strike_pointer"
+  "random_sequence": "crystalseized:blocks/lunar_sad"
 }

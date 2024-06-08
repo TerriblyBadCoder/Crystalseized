@@ -85,7 +85,7 @@ public abstract class BadIdeaMixin extends Level{
             blockpos1 = this.findLightningTargetAround(this.getBlockRandomPos(i, 0, j, 15));
             if(getBiome(blockpos1).getTagKeys().toList().contains(BiomeTags.IS_END)&&getBiome(blockpos1).unwrapKey().get()!= Biomes.THE_END)
             {
-                StarFallEntity starFallEntity = CSentityRegistry.STARFALL.get().create(this);
+                StarFallEntity starFallEntity = new StarFallEntity(CSentityRegistry.STARFALL.get(),this,(float)Math.random());
                 starFallEntity.moveTo(Vec3.atBottomCenterOf(blockpos1.atY(255)));
                 this.addFreshEntity(starFallEntity);
             }

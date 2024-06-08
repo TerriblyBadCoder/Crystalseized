@@ -14,6 +14,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class CSentityRegistry {
     public static final DeferredRegister<EntityType<?>> DEF_REG
             = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Crystalseized.MODID);
-    public static final RegistryObject<EntityType<StarFallEntity>> STARFALL = DEF_REG.register("starfall", () -> (EntityType) EntityType.Builder.of(StarFallEntity::new, MobCategory.MISC).sized(0.4F, 0.4F).build("starfall"));
+    public static final RegistryObject<EntityType<StarFallEntity>> STARFALL = DEF_REG.register("starfall", () -> (EntityType) EntityType.Builder.of(StarFallEntity::new, MobCategory.MISC).sized(0.4F, 0.4F).noSave().build("starfall"));
 
 }
