@@ -2,6 +2,7 @@ package net.atired.crystalseized.events;
 
 import net.atired.crystalseized.blocks.CSblockRegistry;
 import net.atired.crystalseized.blocks.custom.EndCrystalBlock;
+import net.atired.crystalseized.entities.custom.StarFallEntity;
 import net.atired.crystalseized.items.CSitemRegistry;
 import net.atired.crystalseized.items.custom.PrismaticPantsItem;
 import net.atired.crystalseized.networking.ModMessages;
@@ -18,6 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EntityEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,6 +31,7 @@ import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LightningRodBlock;
+import net.minecraft.world.level.block.PowderSnowBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -87,6 +90,7 @@ public class PlayerEvents {
 
     }
 
+
     @SubscribeEvent
     public void entityTick(LivingEvent.LivingTickEvent event)
     {
@@ -129,6 +133,7 @@ public class PlayerEvents {
             }
 
         }
+
     }
 
 }

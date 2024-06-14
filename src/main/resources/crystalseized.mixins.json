@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "crystalseized.refmap.json",
   "mixins": [
-    "BadIdeaMixin"
+    "BadIdeaMixin",
+    "LivingEntityMixin"
   ],
   "client": [
     "HumanoidArmorLayerMixin"

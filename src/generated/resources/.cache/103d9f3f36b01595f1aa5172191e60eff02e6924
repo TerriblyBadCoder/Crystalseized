@@ -1,4 +1,7 @@
-// 1.20.1	2024-06-08T14:37:35.8451182	Registries
+// 1.20.1	2024-06-09T21:12:41.8521706	Registries
 ee497c75e28b0089895c4e97ed851d389df1980e data/crystalseized/forge/biome_modifier/add_end_prism.json
+56b9fbb71219c3de5ff7f0f4efbb6844e09f4425 data/crystalseized/forge/biome_modifier/add_gas.json
 51fb5c655587d59a57a288a67907616ae5dc85a1 data/crystalseized/worldgen/configured_feature/end_prism.json
+e3f89c02e951280b6d0bc5ac6a6b71ff8248b03d data/crystalseized/worldgen/configured_feature/gase.json
 14b550216bb5a2e4ac7745b100f10e18572ce73f data/crystalseized/worldgen/placed_feature/end_prism_placed.json
+96e745a1b1f5b1cc19996c08c9d2a40f3271a18c data/crystalseized/worldgen/placed_feature/gas_placed.json

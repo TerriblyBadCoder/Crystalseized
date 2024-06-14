@@ -26,6 +26,9 @@ public class CSparticleRegistry {
             return (Codec)codec.apply(this);
         }
     });
+    public static final RegistryObject<SimpleParticleType> BURNING_PARTICLES = PARTICLE_TYPES.register("burning_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> OZONE_PARTICLES = PARTICLE_TYPES.register("ozone_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> TOXIN_PARTICLES = PARTICLE_TYPES.register("toxin_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> METEOR_PARTICLES = PARTICLE_TYPES.register("meteor_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> SCORCH_PARTICLES = PARTICLE_TYPES.register("scorch_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<DirectedParticleType> BOUNCE_PARTICLES = PARTICLE_TYPES.register("bounce_particles", () -> new DirectedParticleType(true));

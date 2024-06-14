@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 
 public class CSbaseFeatures {
     public static final DeferredRegister<Feature<?>> FEATURE_REGISTER = DeferredRegister.create(Registries.FEATURE, Crystalseized.MODID);
+    public static final Feature<NoneFeatureConfiguration> GASSPHERE = register("gas_sphere", new HydrogenPatchFeature(NoneFeatureConfiguration.CODEC));
     public static final Feature<NoneFeatureConfiguration> ENDPRISMPILLAR = register("end_prism", new EndPrismPillarFeature(NoneFeatureConfiguration.CODEC));
     private static <C extends FeatureConfiguration, F extends Feature<C>> F register(String key, F value)
     {

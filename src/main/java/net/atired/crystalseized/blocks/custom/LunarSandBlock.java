@@ -9,7 +9,9 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -28,6 +30,7 @@ public class LunarSandBlock extends FallingBlock {
         if (isFree(p_221125_.getBlockState(p_221126_.below())) && p_221126_.getY() >= p_221125_.getMinBuildHeight()) {
             FallingBlockEntity $$4 = FallingBlockEntity.fall(p_221125_, p_221126_, p_221124_);
             this.falling($$4);
+
         }
     }
 

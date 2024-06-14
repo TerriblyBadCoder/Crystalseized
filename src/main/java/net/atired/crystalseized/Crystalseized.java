@@ -2,6 +2,7 @@ package net.atired.crystalseized;
 
 import com.mojang.logging.LogUtils;
 import net.atired.crystalseized.blocks.CSblockRegistry;
+import net.atired.crystalseized.effects.CSeffectRegistry;
 import net.atired.crystalseized.entities.CSblockEntityRegistry;
 import net.atired.crystalseized.entities.CSentityRegistry;
 import net.atired.crystalseized.events.ClientEvents;
@@ -56,6 +57,7 @@ public class Crystalseized {
         CSentityRegistry.DEF_REG.register(modEventBus);
         CSblockEntityRegistry.DEF_REG.register(modEventBus);
         CSbaseFeatures.register(modEventBus);
+        CSeffectRegistry.register(modEventBus);
         CSparticleRegistry.register(modEventBus);
         modEventBus.addListener(ColorEvents::registerBlockColors);
         modEventBus.addListener(ColorEvents::registerItemColors);

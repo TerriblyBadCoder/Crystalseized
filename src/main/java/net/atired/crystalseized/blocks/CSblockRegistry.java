@@ -1,10 +1,7 @@
 package net.atired.crystalseized.blocks;
 
 import net.atired.crystalseized.Crystalseized;
-import net.atired.crystalseized.blocks.custom.EndCrystalBlock;
-import net.atired.crystalseized.blocks.custom.LunarSandBlock;
-import net.atired.crystalseized.blocks.custom.MeteorCatcherBlock;
-import net.atired.crystalseized.blocks.custom.StrikePointerBlock;
+import net.atired.crystalseized.blocks.custom.*;
 import net.atired.crystalseized.items.CSitemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
@@ -31,7 +28,10 @@ public class CSblockRegistry {
         return toReturn;
 
     }
-
+    public static final RegistryObject<Block> OZONE_BLOCK = registerBlock("ozone",
+            () -> new OzoneBlock(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable()));
+    public static final RegistryObject<Block> HYDROGEN_BLOCK = registerBlock("hydrogen",
+            () -> new HydrogenBlock(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().ignitedByLava()));
 
     public static final RegistryObject<Block> END_CRYSTAL = registerBlock("end_crystal",
             () -> new EndCrystalBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).noOcclusion().requiresCorrectToolForDrops()));
