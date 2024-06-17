@@ -19,27 +19,33 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.armortrim.TrimMaterials;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LightningRodBlock;
 import net.minecraft.world.level.block.PowderSnowBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.MovementInputUpdateEvent;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.joml.Vector3f;
 
@@ -89,7 +95,53 @@ public class PlayerEvents {
         }
 
     }
+    @SubscribeEvent
+    public void playerUse(PlayerInteractEvent event)
+    {
+        Player player = event.getEntity();
+        float f = player.getXRot();
+        float f1 = player.getYRot();
+        Vec3 vec3 = player.getEyePosition();
+        float f2 = Mth.cos(-f1 * 0.017453292F - 3.1415927F);
+        float f3 = Mth.sin(-f1 * 0.017453292F - 3.1415927F);
+        float f4 = -Mth.cos(-f * 0.017453292F);
+        float f5 = Mth.sin(-f * 0.017453292F);
+        float f6 = f3 * f4;
+        float f7 = f2 * f4;
+        double d0 = 4;
+        Vec3 vec31 = vec3.add((double)f6 * d0, (double)f5 * d0, (double)f7 * d0);
+        BlockHitResult blockHitResult = event.getLevel().clip(new ClipContext(vec3, vec31, ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, player));
+        BlockState state = event.getLevel().getBlockState(blockHitResult.getBlockPos());
+        if(event.getEntity().getItemInHand(event.getHand()).getItem() == Items.GLASS_BOTTLE && (event.getHand() == InteractionHand.MAIN_HAND || event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem() != Items.GLASS_BOTTLE  ))
+        {
 
+            if(state.getBlock() == CSblockRegistry.HYDROGEN_BLOCK.get())
+            {
+                if(!event.getEntity().getAbilities().instabuild)
+                {
+                    event.getEntity().getItemInHand(event.getHand()).setCount(event.getEntity().getItemInHand(event.getHand()).getCount()-1);
+                }
+                event.getEntity().swing(event.getHand());
+                ItemStack itemStack = new  ItemStack(CSitemRegistry.HYDROGEN_BOTTLE.get());
+                if (!player.getInventory().add(itemStack)) {
+                    player.drop(itemStack, false);
+                }
+            }
+            if(state.getBlock() == CSblockRegistry.OZONE_BLOCK.get())
+            {
+                if(!event.getEntity().getAbilities().instabuild)
+                {
+                    event.getEntity().getItemInHand(event.getHand()).setCount(event.getEntity().getItemInHand(event.getHand()).getCount()-1);
+                }
+                event.getEntity().swing(event.getHand());
+                ItemStack itemStack = new  ItemStack(CSitemRegistry.OZONE_BOTTLE.get());
+                if (!player.getInventory().add(itemStack)) {
+                    player.drop(itemStack, false);
+                }
+            }
+        }
+
+    }
 
     @SubscribeEvent
     public void entityTick(LivingEvent.LivingTickEvent event)

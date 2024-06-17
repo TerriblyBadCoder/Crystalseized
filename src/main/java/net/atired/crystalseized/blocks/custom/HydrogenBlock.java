@@ -11,14 +11,19 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.WaterFluid;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -36,12 +41,15 @@ public class HydrogenBlock extends AirBlock {
 
     @Override
     public BlockState updateShape(BlockState p_60541_, Direction p_60542_, BlockState p_60543_, LevelAccessor p_60544_, BlockPos pos, BlockPos posother) {
-        if(p_60544_.getBlockState(posother).getBlock() instanceof FireBlock)
+        if(p_60544_.getBlockState(posother).getBlock() instanceof BaseFireBlock)
         {
+
             p_60544_.scheduleTick(pos, CSblockRegistry.HYDROGEN_BLOCK.get(), 1);
         }
         return super.updateShape(p_60541_, p_60542_, p_60543_, p_60544_, pos, posother);
     }
+
+
 
     @Override
     public void tick(BlockState p_222945_, ServerLevel p_222946_, BlockPos pos, RandomSource p_222948_) {

@@ -17,7 +17,7 @@ public class BurningParticles extends TextureSheetParticle {
     protected BurningParticles(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.gravity = 0F;
-        this.friction = 0.95F;
+        this.friction = 0.85F;
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
@@ -77,6 +77,8 @@ public class BurningParticles extends TextureSheetParticle {
         this.roll = (float) (Math.sin(this.age)/5f);
         this.quadSize /= 1.09f;
         this.alpha-=0.09f;
+        this.bCol-=0.04f;
+        this.gCol-=0.04f;
     }
 
 

@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -66,6 +67,7 @@ public class ClientEvents {
                 stack.rotateAround($$8,0,0,0);
                 model.renderToBuffer(stack,event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentEmissive(PINK_LOC)),255,1,0.2f,1,1, Mth.clamp(0.45f*(float)pos.length()-0.05f,0,1));
                 stack.popPose();
+
                 stack.pushPose();
                 stack.translate(pos.x*1.5,pos.y*1.5+size/2*1.4,pos.z*1.5);
                 stack.scale(0.8f,0.8f,0.8f);
